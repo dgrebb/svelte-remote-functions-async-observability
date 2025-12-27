@@ -14,3 +14,32 @@ body {
 	margin: 0 auto;
 	padding: 0 1rem;
 }
+
+.page-wrapper {
+	position: relative;
+	min-height: 50vh;
+}
+
+.page-content {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+/* Hide any duplicate page-content that appears after another one */
+.page-content ~ .page-content {
+	display: none;
+}
+
+/* Keep outgoing page absolutely positioned during exit */
+.page-content:global(.svelte-fade-exit),
+.page-content:global(.svelte-fade-exit-active) {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+}
