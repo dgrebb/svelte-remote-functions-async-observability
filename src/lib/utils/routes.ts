@@ -25,11 +25,14 @@ export function getRoutes(): RouteInfo[] {
 	// First, collect all routes
 	const allRoutes = Object.keys(pages)
 		.map((filePath) => {
+			// Skip routes inside route groups (folders in parentheses) and all their sub-routes
+			// Route groups are organizational only and shouldn't appear in navigation
+			if (/\([^)]+\)/.test(filePath)) {
+				return null;
+			}
+
 			// Remove '/src/routes' prefix and '/+page.svelte' suffix
 			let route = filePath.replace('/src/routes', '').replace('/+page.svelte', '');
-
-			// Remove pathless route groups (folders in parentheses)
-			route = route.replace(/\([^)]+\)\//g, '');
 
 			// Normalize: ensure leading slash, remove trailing slash (except root)
 			if (!route.startsWith('/')) {
