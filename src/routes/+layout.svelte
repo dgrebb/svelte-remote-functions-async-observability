@@ -11,7 +11,7 @@
 
 	let { children, data } = $props();
 
-	let user = $derived(data?.user ?? null);
+	let user: App.Locals['user'] = $derived(data?.user ?? null);
 	let name = $derived(user?.name ?? 'Guest');
 
 	// Get current pathname for key-based transitions
@@ -23,7 +23,7 @@
 </svelte:head>
 
 <div class="container">
-	<Header {user} />
+	<Header />
 	<div class="page-wrapper">
 		<p>Hello {name}</p>
 		{#key pathname}
