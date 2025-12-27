@@ -13,8 +13,6 @@
 		return data;
 	};
 
-	let data = $state<{ message: string; timestamp: string } | null>(null);
-
 	logger.info('Welcome to the Home Page');
 </script>
 
