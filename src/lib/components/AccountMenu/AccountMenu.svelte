@@ -5,6 +5,7 @@
 	import { goto } from '$app/navigation';
 	import { invalidateAll } from '$app/navigation';
 	import { page } from '$app/state';
+	import NavItem from '../Navigation/NavItem.svelte';
 
 	const { signOut } = authClient;
 	const logger = new Logger('Account Menu');
@@ -24,16 +25,34 @@
 	};
 </script>
 
-{#if user?.id}
-	<div class="account-menu">
-		<button class="logout-button" onclick={handleLogout}>Logout</button>
-	</div>
-{:else}
-	<div class="account-menu">
-		<a href={resolve('/login')}>Login</a>
-		<a href={resolve('/sign-up')}>Sign Up</a>
-	</div>
-{/if}
+<nav class="navigation account-menu">
+	<ul class="nav-list">
+		{#if user?.id}
+			<li class="nav-item">
+				<button class="nav-link logout-button" onclick={handleLogout}>Logout</button>
+			</li>
+		{:else}
+			<NavItem
+				route={{
+					path: '/login',
+					label: 'Login',
+					filePath: '/(auth)/login/+page.svelte',
+					isDynamic: false,
+					children: []
+				}}
+			/>
+			<NavItem
+				route={{
+					path: '/sign-up',
+					label: 'Sign Up',
+					filePath: '/(auth)/sign-up/+page.svelte',
+					isDynamic: false,
+					children: []
+				}}
+			/>
+		{/if}
+	</ul>
+</nav>
 
 <style>
 	.account-menu {

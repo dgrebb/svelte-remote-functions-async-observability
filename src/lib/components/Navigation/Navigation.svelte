@@ -1,6 +1,10 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { getRoutes } from '$lib/utils/routes';
 	import NavItem from './NavItem.svelte';
+	import { page } from '$app/state';
+
+	const user: App.Locals['user'] = $derived(page.data?.user ?? null);
 
 	// Get routes at build time (now returns hierarchical tree)
 	const routes = getRoutes();
@@ -11,12 +15,22 @@
 		{#each routes as route (route.path)}
 			<NavItem {route} />
 		{/each}
+		{#if user?.id}
+			<NavItem
+				route={{
+					path: '/subscriptions',
+					label: 'Subscriptions',
+					filePath: '/(protected)/subscriptions/+page.svelte',
+					isDynamic: false,
+					children: []
+				}}
+			/>
+		{/if}
 	</ul>
 </nav>
 
 <style>
 	.navigation {
-		padding: 1rem 0;
 		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 		flex: 1;
 		display: flex;
