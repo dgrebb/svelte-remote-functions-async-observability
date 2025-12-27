@@ -74,6 +74,7 @@
 		border-radius: 0.375rem;
 		transition: all 0.2s ease;
 		font-weight: 500;
+		margin: 0;
 		&:hover {
 			background-color: rgba(0, 0, 0, 0.05);
 			color: #fff;
@@ -133,11 +134,7 @@
 		border-radius: 0.375rem;
 		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 		min-width: 200px;
-		padding: 0.5rem 0;
 		z-index: 1000;
-		margin-top: 0;
-		/* Remove gap to prevent hover break */
-		padding-top: 0.25rem;
 	}
 
 	/* Show dropdown when hovering over parent nav-item OR the dropdown itself */
