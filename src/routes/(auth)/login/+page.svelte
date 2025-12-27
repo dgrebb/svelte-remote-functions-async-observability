@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
+	import { invalidateAll } from '$app/navigation';
 	import { authClient } from '$lib/auth-client';
 	import type { ErrorContext } from 'better-auth/client';
 
@@ -31,7 +32,8 @@
 				password
 			},
 			{
-				onSuccess: () => {
+				onSuccess: async () => {
+					await invalidateAll();
 					goto(resolve('/'));
 				},
 				onError: (error: ErrorContext) => {
@@ -43,7 +45,7 @@
 	};
 </script>
 
-<h1>Sign Up</h1>
+<h1>Login</h1>
 
 <form onsubmit={handleSubmit}>
 	<label for="email">

@@ -18,6 +18,10 @@
 	.navigation {
 		padding: 1rem 0;
 		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		flex: 1;
+		display: flex;
+		justify-content: start;
+		align-items: center;
 	}
 
 	.nav-list {

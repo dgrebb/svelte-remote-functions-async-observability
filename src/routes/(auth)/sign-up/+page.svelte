@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
+	import { invalidateAll } from '$app/navigation';
 	import { authClient } from '$lib/auth-client';
 	import type { ErrorContext } from 'better-auth/client';
 
@@ -41,7 +42,8 @@
 				name: username
 			},
 			{
-				onSuccess: () => {
+				onSuccess: async () => {
+					await invalidateAll();
 					goto(resolve('/'));
 				},
 				onError: (error: ErrorContext) => {

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Header from '$lib/components/Header.svelte';
+
 	import '@drop-in/graffiti';
 	import '../lib/styles.css';
 	import favicon from '$lib/assets/favicon.svg';
@@ -7,7 +9,10 @@
 	import { page } from '$app/state';
 	import { fade } from 'svelte/transition';
 
-	let { children } = $props();
+	let { children, data } = $props();
+
+	let user = $derived(data?.user ?? null);
+	let name = $derived(user?.name ?? 'Guest');
 
 	// Get current pathname for key-based transitions
 	const pathname = $derived(page.url.pathname);
@@ -18,9 +23,9 @@
 </svelte:head>
 
 <div class="container">
-	<Navigation />
-	<AccountMenu />
+	<Header {user} />
 	<div class="page-wrapper">
+		<p>Hello {name}</p>
 		{#key pathname}
 			<div
 				class="page-content"

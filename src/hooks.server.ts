@@ -5,9 +5,8 @@ import { sequence } from '@sveltejs/kit/hooks';
 import { svelteKitHandler } from 'better-auth/svelte-kit';
 import Logger from '$lib/utils/logger';
 
-const logger = new Logger('[HOOKS]:[SERVER]');
-
 export const authHandle: Handle = async ({ event, resolve }) => {
+	const logger = new Logger('[HOOKS]:[AUTH]');
 	let response = null;
 	logger.info('Starting auth handle');
 
@@ -31,18 +30,18 @@ export const authHandle: Handle = async ({ event, resolve }) => {
 	}
 };
 
-export const START_HANDLE: Handle = async ({ event, resolve }) => {
-	const response = await resolve(event);
-	logger.info('Starting start handle');
-	return response;
-};
+export const sessionHandle: Handle = async ({ event, resolve }) => {
+	const logger = new Logger('[HOOKS]:[SESSION]');
+	const session = await auth.api.getSession({
+		headers: event.request.headers
+	});
 
-export const END_HANDLE: Handle = async ({ event, resolve }) => {
+	logger.info('Session handle successful', session?.user);
+	event.locals.user = session?.user;
 	const response = await resolve(event);
-	console.log('[HOOKS]:[SERVER]:[END]');
 	return response;
 };
 
 // sequence is a function that takes an array of handles and returns a handle
 // This is a great place to inject middleware like logging, authentication, etc.
-export const handle: Handle = sequence(START_HANDLE, authHandle, END_HANDLE);
+export const handle: Handle = sequence(authHandle, sessionHandle);

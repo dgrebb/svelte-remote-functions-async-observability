@@ -3,7 +3,9 @@
 declare global {
 	namespace App {
 		// interface Error {}
-		// interface Locals {}
+		interface Locals {
+			user: typeof import('$lib/auth-client').authClient.$Infer.$session.user;
+		}
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}
