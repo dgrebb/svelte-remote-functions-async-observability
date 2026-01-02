@@ -50,6 +50,7 @@
 		"@opentelemetry/sdk-node": "^0.208.0",
 		"better-auth": "^1.4.9",
 		"import-in-the-middle": "^2.0.1",
-		"postgres": "^3.4.7"
+		"postgres": "^3.4.7",
+		"valibot": "^1.2.0"
 	}
 }

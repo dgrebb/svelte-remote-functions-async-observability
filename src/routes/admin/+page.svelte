@@ -15,7 +15,7 @@
 	{:then posts}
 		{#each posts as post}
 			<li>
-				<a href={`/admin/posts/${post.id}`}>{post.title}</a>
+				<a href={`/blog/post/${post.slug}`}>{post.title}</a>
 			</li>
 		{/each}
 	{:catch error}
