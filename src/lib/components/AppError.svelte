@@ -12,7 +12,7 @@
 	const logger = new Logger('App Error');
 
 	$effect(() => {
-		logger.error('Error: ' + propsError.message, {
+		logger.info('Error: ' + propsError.message, {
 			status: propsError.status ?? 500,
 			traceId: propsError.traceId
 		});
@@ -23,7 +23,7 @@
 	});
 </script>
 
-<div class="flex flex-col items-center justify-center">
+<div class="error-container">
 	<h1 class="text-2xl font-bold">Error {propsError.status ?? 500}</h1>
 	<p class="text-sm text-gray-500">Error message: {propsError.message}</p>
 	<p class="text-sm text-gray-500">Trace ID: {propsError.traceId ?? 'No trace ID'}</p>
@@ -31,3 +31,12 @@
 		<button class="bg-primary text-white px-4 py-2 rounded-md" onclick={retry}>Retry</button>
 	{/if}
 </div>
+
+<style>
+	.error-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		height: 100vh;
+	}
+</style>
