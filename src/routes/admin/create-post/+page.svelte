@@ -17,9 +17,13 @@
 			<p class="error">{issue.message}</p>
 		{/each}
 	</label>
-	{#each createPost?.fields?.allIssues() ?? [] as issue (issue.message)}
-		<p class="error">{issue.message}</p>
-	{/each}
+	{#if createPost?.fields?.allIssues()?.length ?? 0 > 0}
+		<div class="error-container show">
+			{#each createPost?.fields?.allIssues() ?? [] as issue (issue.message)}
+				<p class="error">{issue.message}</p>
+			{/each}
+		</div>
+	{/if}
 	<button type="submit">Create Post</button>
 </form>
 
@@ -47,5 +51,18 @@
 	}
 	.error {
 		color: red;
+	}
+	.error-container {
+		display: none;
+		background-color: rgba(255, 0, 0, 0.5);
+		backdrop-filter: blur(10px);
+		flex-direction: column;
+		gap: 0.5rem;
+		padding: 0.5rem;
+		border-radius: 0.5rem;
+		border: 1px solid rgba(255, 0, 0, 0.5);
+	}
+	.error-container.show {
+		display: flex;
 	}
 </style>
