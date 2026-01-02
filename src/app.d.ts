@@ -2,7 +2,11 @@
 // for information about these interfaces
 declare global {
 	namespace App {
-		// interface Error {}
+		interface Error {
+			message: string;
+			status?: number;
+			traceId?: string;
+		}
 		interface Locals {
 			user: typeof import('$lib/auth-client').authClient.$Infer.$session.user;
 		}
