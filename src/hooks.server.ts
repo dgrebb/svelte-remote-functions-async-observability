@@ -47,14 +47,14 @@ export const sessionHandle: Handle = async ({ event, resolve }) => {
 
 	logger.info('Session handle successful: session.id: ' + session?.session.id);
 	event.locals.user = session?.user;
-	event.tracing.current.setAttribute('session.id', session?.session.id ?? 'unknown');
+	event.tracing.root.setAttribute('session.id', session?.session.id ?? 'unknown');
 	const response = await resolve(event);
 	return response;
 };
 
 export const observabilityHandle: Handle = async ({ event, resolve }) => {
 	const logger = new Logger('[HOOKS]:[OBSERVABILITY]');
-	const span = event.tracing.current;
+	const span = event.tracing.root;
 
 	try {
 		// request-level attrs
