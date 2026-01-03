@@ -13,13 +13,7 @@
 
 	const logger = new Logger('Blog Post Page');
 
-	$effect(() => {
-		if (post) {
-			logger.info(`Found post: ${post.title}`);
-		} else {
-			logger.info('No post found');
-		}
-	});
+	logger.info(() => `Found post: ${post?.title ?? 'No post found'}`);
 </script>
 
 {#if post}
