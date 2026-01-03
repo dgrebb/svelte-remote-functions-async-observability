@@ -6,11 +6,11 @@
 	const logger = new Logger('Admin Posts Page');
 </script>
 
-<h1>Admin</h1>
+<h1>Account</h1>
 
 <h2>Your Posts</h2>
 
-<a href={resolve('/admin/create-post')}>Create New Post</a>
+<a href={resolve('/account/create-post')}>Create New Post</a>
 
 <ul>
 	{#await getAllUserPosts()}
@@ -19,7 +19,6 @@
 		{#each posts as post}
 			<li>
 				<a href={`/blog/post/${post.slug}`}>{post.title}</a>
-				<a href={`/admin/edit-post/${post.id}`}>Edit</a>
 			</li>
 		{/each}
 	{:catch error}

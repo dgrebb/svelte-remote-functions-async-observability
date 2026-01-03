@@ -44,3 +44,8 @@ body {
 	right: 0;
 	width: 100%;
 }
+
+.button,
+button {
+	display: inline-block;
+}

@@ -34,3 +34,17 @@
 		<AppError error={error as App.Error & { status?: number }} {retry} />
 	{/snippet}
 </svelte:boundary>
+
+<h2>Authentication Tests</h2>
+<p>These links are protected and will redirect to the login page if not admin or authenticated</p>
+<ul>
+	<li>
+		<a href="/admin" data-sveltekit-preload-data="false">Admin</a>
+	</li>
+	<li>
+		<a href="/account/create-post" data-sveltekit-preload-data="false">Create Post</a>
+	</li>
+	<li>
+		<a href="/subscriptions" data-sveltekit-preload-data="false">Subscriptions</a>
+	</li>
+</ul>

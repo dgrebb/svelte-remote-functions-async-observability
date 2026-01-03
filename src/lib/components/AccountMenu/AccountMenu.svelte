@@ -28,6 +28,43 @@
 <nav class="navigation account-menu">
 	<ul class="nav-list">
 		{#if user?.id}
+			{#if user?.role === 'admin'}
+				<NavItem
+					route={{
+						path: '/admin',
+						label: 'Admin',
+						filePath: '/admin/+page.svelte',
+						isDynamic: false,
+						children: [
+							{
+								path: '/account/create-post',
+								label: 'Create Post',
+								filePath: '/account/create-post/+page.svelte',
+								isDynamic: false,
+								children: []
+							}
+						]
+					}}
+				/>
+			{:else}
+				<NavItem
+					route={{
+						path: '/account',
+						label: 'Account',
+						filePath: '/account/+page.svelte',
+						isDynamic: false,
+						children: [
+							{
+								path: '/account/create-post',
+								label: 'Create Post',
+								filePath: '/account/create-post/+page.svelte',
+								isDynamic: false,
+								children: []
+							}
+						]
+					}}
+				/>
+			{/if}
 			<li class="nav-item">
 				<button class="nav-link logout-button" onclick={handleLogout}>Logout</button>
 			</li>
