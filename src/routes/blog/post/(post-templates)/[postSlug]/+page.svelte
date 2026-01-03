@@ -22,5 +22,12 @@
 	});
 </script>
 
-<h1>{post?.title}</h1>
-<p>{post?.body}</p>
+{#if post}
+	<h1>{post.title}</h1>
+	{#if page.data.user?.id === post.authorId}
+		<a href={`/admin/edit-post/${post.id}`}>Edit</a>
+	{/if}
+	<p>{post.body}</p>
+{:else}
+	<p>No post found</p>
+{/if}

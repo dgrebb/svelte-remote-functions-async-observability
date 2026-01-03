@@ -12,7 +12,7 @@
 	</label>
 	<label>
 		Body:
-		<textarea {...createPost.fields.body.as('text')} />
+		<textarea {...createPost.fields.body.as('text')}></textarea>
 		{#each createPost.fields.body.issues() as issue (issue.message)}
 			<p class="error">{issue.message}</p>
 		{/each}
