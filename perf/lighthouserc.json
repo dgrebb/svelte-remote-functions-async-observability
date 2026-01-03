@@ -1,0 +1,17 @@
+{
+	"ci": {
+		"collect": {
+			"urls": [
+				"https://localhost:4173/",
+				"https://localhost:4173/about",
+				"https://localhost:4173/blog/posts"
+			]
+		},
+		"assert": {
+			"categories": {
+				"performance": 90,
+				"accessibility": 80
+			}
+		}
+	}
+}
