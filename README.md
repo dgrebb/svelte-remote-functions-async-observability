@@ -351,6 +351,64 @@ pnpm lint             # Lint code
 pnpm format           # Format code
 ```
 
+### (Optional) SSL Certificate in `dev` Mode
+
+This can be accomplished by creating a local certificate authority and generating
+
+1. [Install `mkcert`](https://github.com/FiloSottile/mkcert?tab=readme-ov-file#installation)
+2. Create and install the local certificate authority:
+
+    ```shell
+    mkcert -install
+    Created a new local CA 💥
+    The local CA is now installed in the system trust store! ⚡️
+    The local CA is now installed in the Firefox trust store (requires browser restart)! 🦊
+    ```
+
+3. Create a certificate for the application:
+
+    ```shell
+    cd svelte-remote-functions-async-observability
+    mkcert -key-file cert/key.pem -cert-file cert/cert.pem localhost
+    ```
+
+    *Note:* The `./cert` directory is excluded from tracking via `.gitignore`.
+
+4. Update `vite.config.ts`
+
+    ```javascript
+    import { sveltekit } from '@sveltejs/kit/vite';
+    import { defineConfig } from 'vite';
+    import fs from 'fs';
+
+    export default defineConfig({
+        // ...
+        plugins: [sveltekit()],
+        server: {
+            https: {
+                key: fs.readFileSync(`${__dirname}/cert/key.pem`),
+                cert: fs.readFileSync(`${__dirname}/cert/cert.pem`)
+            },
+            proxy: {} // Note that proxy is needed — with or without options
+        }
+        // ...
+    });
+    ```
+
+5. Restart the application:
+
+```shell
+◄ 1h6m25s ○ pnpm dev
+
+...
+
+  VITE v7.3.0  ready in 341 ms
+
+  ➜  Local:   https://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+```
+
 ## Technologies
 
 - **SvelteKit** - Full-stack framework
