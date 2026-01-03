@@ -4,13 +4,28 @@ import { auth } from '$lib/auth';
 import { db } from '$lib/server/db';
 import { post } from '$lib/server/db/schema';
 import { withSpan } from '$lib/server/observability/withSpan';
-import { error, redirect } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
 import * as v from 'valibot';
 
 export const getAllPosts = query(async () => {
 	return withSpan('rf:getAllPosts', async () => {
 		const posts = await db.query.post.findMany();
+		return posts;
+	});
+});
+
+export const getAllUserPosts = query(async () => {
+	return withSpan('rf:getAllUserPosts', async () => {
+		const event = getRequestEvent();
+		const session = await auth.api.getSession({
+			headers: event.request.headers
+		});
+		const authorId = session?.user?.id;
+		if (!authorId) throw redirect(303, resolve('/login'));
+		const posts = await db.query.post.findMany({
+			where: (post, { eq }) => eq(post.authorId, authorId)
+		});
 		return posts;
 	});
 });

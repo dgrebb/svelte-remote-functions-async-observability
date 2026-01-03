@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import Logger from '$lib/utils/logger';
-	import { getAllPosts } from './posts.remote';
+	import { getAllUserPosts } from './posts.remote';
 
 	const logger = new Logger('Admin Posts Page');
 </script>
@@ -13,7 +13,7 @@
 <a href={resolve('/admin/create-post')}>Create New Post</a>
 
 <ul>
-	{#await getAllPosts()}
+	{#await getAllUserPosts()}
 		<p>Loading your posts...</p>
 	{:then posts}
 		{#each posts as post}

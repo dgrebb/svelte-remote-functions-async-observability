@@ -10,7 +10,7 @@
 	{:then post}
 		<h1>Edit Post</h1>
 
-		{#if post}
+		{#if post && page.data.user?.id === post.authorId}
 			<form {...updatePost} oninput={() => updatePost.validate()}>
 				<input type="hidden" {...updatePost.fields.id.as('text')} value={post.id} />
 				<label>
