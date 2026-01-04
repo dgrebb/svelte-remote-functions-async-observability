@@ -6,7 +6,7 @@
 	const logger = new Logger('Admin Posts Page');
 </script>
 
-<h1>Account</h1>
+<h1 style:view-transition-name="main-heading">Account</h1>
 
 <h2>Your Posts</h2>
 

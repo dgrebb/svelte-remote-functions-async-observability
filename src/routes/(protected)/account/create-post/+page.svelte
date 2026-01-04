@@ -2,6 +2,7 @@
 	import { createPost } from '../posts.remote';
 </script>
 
+<h1 style:view-transition-name="main-heading">Create Post</h1>
 <form {...createPost} oninput={() => createPost.validate()}>
 	<label>
 		Title:

@@ -45,7 +45,7 @@
 	};
 </script>
 
-<h1>Login</h1>
+<h1 style:view-transition-name="main-heading">Login</h1>
 
 <form onsubmit={handleSubmit}>
 	<label for="email">

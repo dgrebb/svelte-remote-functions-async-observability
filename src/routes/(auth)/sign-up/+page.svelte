@@ -55,7 +55,7 @@
 	};
 </script>
 
-<h1>Sign Up</h1>
+<h1 style:view-transition-name="main-heading">Sign Up</h1>
 
 <form onsubmit={handleSubmit}>
 	<label for="username">

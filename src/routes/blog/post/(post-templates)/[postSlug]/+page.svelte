@@ -17,7 +17,7 @@
 </script>
 
 {#if post}
-	<h1>{post.title}</h1>
+	<h1 style:view-transition-name={`heading-${post.id}`}>{post.title}</h1>
 	{#if page.data.user?.role === 'admin'}
 		<a href={`/admin/edit-post/${post.id}`}>Edit</a>
 	{/if}

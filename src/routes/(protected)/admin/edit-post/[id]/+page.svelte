@@ -10,7 +10,7 @@
 	{#await getPostById(page.params.id!)}
 		<p>Loading post...</p>
 	{:then post}
-		<h1>Edit Post</h1>
+		<h1 style:view-transition-name="main-heading">Edit Post</h1>
 		{#if (post && page.data.user?.id === post.authorId) || page.data.user?.role === 'admin'}
 			<form {...updatePost} oninput={() => updatePost.validate()}>
 				<input type="hidden" {...updatePost.fields.id.as('text')} value={post?.id} />

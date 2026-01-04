@@ -18,7 +18,7 @@
 </script>
 
 <svelte:boundary>
-	<h1>Welcome to the home page</h1>
+	<h1 style:view-transition-name="main-heading">Welcome to the home page</h1>
 	<p>Where we can provide default content for the client side page</p>
 	{#await mockLoadData()}
 		<p><em>while we...</em></p>

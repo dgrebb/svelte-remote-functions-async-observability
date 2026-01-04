@@ -2,11 +2,12 @@
 	import { resolve } from '$app/paths';
 	import Logger from '$lib/utils/logger';
 	import { getAllUsers } from './users.remote';
+	import { page } from '$app/state';
 
 	const logger = new Logger('Admin Posts Page');
 </script>
 
-<h1>Admin</h1>
+<h1 style:view-transition-name="main-heading">Admin</h1>
 
 <h2>Users</h2>
 

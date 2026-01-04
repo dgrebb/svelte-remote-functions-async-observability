@@ -30,21 +30,6 @@ body {
 	height: 100%;
 }
 
-/* Hide any duplicate page-content that appears after another one */
-.page-content ~ .page-content {
-	display: none;
-}
-
-/* Keep outgoing page absolutely positioned during exit */
-.page-content:global(.svelte-fade-exit),
-.page-content:global(.svelte-fade-exit-active) {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	width: 100%;
-}
-
 .button,
 button {
 	display: inline-block;
