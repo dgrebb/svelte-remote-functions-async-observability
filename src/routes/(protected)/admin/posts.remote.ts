@@ -48,8 +48,8 @@ export const createPost = form(
 		'Create Post'
 	),
 	async ({ title, body }) => {
-		const event = getRequestEvent();
 		return withSpan('rf:createPost', async () => {
+			const event = getRequestEvent();
 			const session = await auth.api.getSession({
 				headers: event.request.headers
 			});
@@ -72,8 +72,8 @@ export const updatePost = form(
 		'Update Post'
 	),
 	async ({ title, body, id }: { title: string; body: string; id: string }) => {
-		const event = getRequestEvent();
 		return withSpan('rf:updatePost', async () => {
+			const event = getRequestEvent();
 			const session = await auth.api.getSession({
 				headers: event.request.headers
 			});
